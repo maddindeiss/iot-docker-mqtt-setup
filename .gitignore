@@ -4,3 +4,5 @@
 
 mosquitto/data/*
 mosquitto/log/*
+nodered/*
+openhab/*
