@@ -1,0 +1,6 @@
+*.log
+*.db
+.env
+
+mosquitto/data/*
+mosquitto/log/*

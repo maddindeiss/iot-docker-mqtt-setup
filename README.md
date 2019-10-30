@@ -5,6 +5,7 @@ This Setup is using the official Docker Images of
 * Mosquitto ([DockerHub](https://hub.docker.com/_/eclipse-mosquitto/))
 * OpenHab ([DockerHub](https://hub.docker.com/r/openhab/openhab/))
 
+
 ## Usage
 
 Use the `.env` file to place the Mosquitto credentials and your User/Group Id for OpenHab
@@ -16,6 +17,7 @@ MOSQUITTO_PASSWORD=mosquitto
 OPENHAB_USER_ID=1000
 OPENHAB_GROUP_ID=1000
 ```
+
 
 ### Build and run
 

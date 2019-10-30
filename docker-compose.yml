@@ -1,0 +1,66 @@
+version: '3.7'
+
+services:
+  mosquitto:
+    build: 
+      context: ./docker/mosquitto
+    container_name: iot-mosquitto
+    environment:
+      MOSQUITTO_USERNAME: ${MOSQUITTO_USERNAME}
+      MOSQUITTO_PASSWORD: ${MOSQUITTO_PASSWORD}
+    image: eclipse-mosquitto
+    restart: always
+    volumes:
+      - type: bind
+        source: "./mosquitto/config"
+        target: "/mosquitto/config"
+        read_only: true
+      - "./mosquitto/data:/mosquitto/data"
+      - "./mosquitto/log:/mosquitto/log"
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    networks:
+     - "iotnet"
+
+  openhab:
+    image: "openhab/openhab:latest"
+    container_name: iot-openhab
+    restart: always
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "5007:5007"
+      - "8101:8101"
+    volumes:
+      - "./openhab/openhab_addons:/openhab/addons"
+      - "./openhab/openhab_conf:/openhab/conf"
+      - "./openhab/openhab_userdata:/openhab/userdata"
+    environment:
+      OPENHAB_HTTP_PORT: ${OPENHAB_HTTP_PORT}
+      OPENHAB_HTTPS_PORT: ${OPENHAB_HTTPS_PORT}
+      EXTRA_JAVA_OPTS: ${EXTRA_JAVA_OPTS_TIMEZONE}
+      USER_ID: ${OPENHAB_USER_ID}
+      GROUP_ID: ${OPENHAB_GROUP_ID}
+      TZ: ${TIMEZONE}
+    networks:
+     - "iotnet"
+
+  node-red:
+    image: "nodered/node-red:latest"
+    container_name: iot-nodered
+    environment:
+      TZ: ${TIMEZONE}
+    restart: always
+    ports:
+      - "1880:1880"
+    networks:
+       - "iotnet"
+    volumes:
+      - "./nodered/data:/data"
+    links:
+     - "mosquitto"
+
+networks:
+  iotnet:
+    driver: bridge
