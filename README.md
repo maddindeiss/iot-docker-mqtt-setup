@@ -18,6 +18,12 @@ OPENHAB_USER_ID=1000
 OPENHAB_GROUP_ID=1000
 ```
 
+Set User/Group permissions for Node-Red and Mosquitto
+
+```
+sudo chown -R 1000:1000 /nodered
+sudo chown -R 1883:1883 /mosquitto
+```
 
 ### Build and run
 
