@@ -51,7 +51,7 @@ services:
       TZ: ${TIMEZONE}
     restart: always
     devices:
-+      - /dev/ttyACM0:/dev/ttyACM0
+      - /dev/ttyACM0:/dev/ttyACM0
     ports:
       - "1880:1880"
     networks:

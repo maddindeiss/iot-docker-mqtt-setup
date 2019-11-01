@@ -1,6 +1,6 @@
 FROM nodered/node-red:latest
 
 USER root
-RUN gpasswd -a node-red dailout
+RUN adduser -S node-red -G dailout
 
 USER node-red
