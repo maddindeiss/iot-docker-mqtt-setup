@@ -2,9 +2,8 @@ version: '3.7'
 
 services:
   mosquitto:
-    build: 
+    build:
       context: ./docker/mosquitto
-    container_name: iot-mosquitto
     environment:
       MOSQUITTO_USERNAME: ${MOSQUITTO_USERNAME}
       MOSQUITTO_PASSWORD: ${MOSQUITTO_PASSWORD}
@@ -25,7 +24,6 @@ services:
 
   openhab:
     image: "openhab/openhab:latest"
-    container_name: iot-openhab
     restart: always
     ports:
       - "8080:8080"
@@ -47,8 +45,8 @@ services:
      - "iotnet"
 
   node-red:
-    image: "nodered/node-red:latest"
-    container_name: iot-nodered
+    build:
+      context: ./docker/nodered
     environment:
       TZ: ${TIMEZONE}
     restart: always
