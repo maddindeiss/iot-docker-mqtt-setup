@@ -23,8 +23,7 @@ services:
      - "iotnet"
 
   openhab:
-    build:
-      context: ./docker/openhab
+    image: "openhab/openhab:latest"
     restart: always
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
