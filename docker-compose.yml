@@ -23,8 +23,11 @@ services:
      - "iotnet"
 
   openhab:
-    image: "openhab/openhab:latest"
+    build:
+      context: ./docker/openhab
     restart: always
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
     ports:
       - "8080:8080"
       - "8443:8443"
