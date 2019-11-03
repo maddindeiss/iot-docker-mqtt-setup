@@ -7,7 +7,6 @@ services:
     environment:
       MOSQUITTO_USERNAME: ${MOSQUITTO_USERNAME}
       MOSQUITTO_PASSWORD: ${MOSQUITTO_PASSWORD}
-    image: eclipse-mosquitto
     restart: always
     volumes:
       - type: bind
@@ -60,8 +59,6 @@ services:
        - "iotnet"
     volumes:
       - "./nodered/data:/data"
-    links:
-     - "mosquitto"
 
 networks:
   iotnet:
