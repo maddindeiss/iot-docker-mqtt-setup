@@ -60,6 +60,36 @@ services:
     volumes:
       - "./nodered/data:/data"
 
+  influx:
+    image: influxdb
+    ports:
+      - "8083:8083"
+      - "8086:8086"
+    restart: always
+    environment:
+      INFLUXDB_USER: ${INFLUXDB_USER}
+      INFLUXDB_PASS: ${INFLUXDB_PASS}
+      INFLUXDB_NAME: ${INFLUXDB_DBNAME}
+      PRE_CREATE_DB: ${INFLUXDB_DBNAME}
+    volumes:
+      - ./influxdb/data:/var/lib/influxdb
+    networks:
+       - "iotnet"
+
+  grafana:
+    image: grafana/grafana
+    restart: always
+    environment:
+      INFLUXDB_USER: ${INFLUXDB_USER}
+      INFLUXDB_PASS: ${INFLUXDB_PASS}
+      INFLUXDB_NAME: ${INFLUXDB_DBNAME}
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/data:/var/lib/grafana
+    networks:
+      - "iotnet"
+
 networks:
   iotnet:
     driver: bridge
