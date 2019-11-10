@@ -61,7 +61,7 @@ services:
       - "./nodered/data:/data"
 
   influx:
-    image: influxdb
+    image: influxdb:latest
     ports:
       - "8083:8083"
       - "8086:8086"
@@ -77,7 +77,7 @@ services:
        - "iotnet"
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:latest
     restart: always
     environment:
       INFLUXDB_USER: ${INFLUXDB_USER}
