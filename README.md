@@ -1,10 +1,11 @@
-# IoT Docker Setup with Node-Red, Mosquitto and OpenHab
+# IoT Docker Setup with Node-Red, Mosquitto, OpenHab, InfluxDB and Grafana
 
 This Setup is using the official Docker Images of
 * Node-Red ([DockerHub](https://hub.docker.com/r/nodered/node-red/))
 * Mosquitto ([DockerHub](https://hub.docker.com/_/eclipse-mosquitto/))
 * OpenHab ([DockerHub](https://hub.docker.com/r/openhab/openhab/))
-
+* InfluxDB ([DockerHub](https://hub.docker.com/_/influxdb))
+* Grafana ([DockerHub](https://hub.docker.com/r/grafana/grafana/))
 
 ## Usage
 
@@ -18,16 +19,30 @@ OPENHAB_USER_ID=1000
 OPENHAB_GROUP_ID=1000
 ```
 
-Set User/Group permissions for Node-Red and Mosquitto
-
-```
-sudo chown -R 1000:1000 /nodered
-sudo chown -R 1883:1883 /mosquitto
-```
-
 ### Build and run
 
 ```
 docker-compose build
 docker-compose up -d
 ```
+
+## Folder Permissions
+
+#### Grafana
+```
+sudo chown -R 472:472 grafana/data/ 
+```
+
+More information: https://grafana.com/docs/installation/docker/#user-id-changes
+
+#### Mosquitto
+```
+sudo chown -R 1883:1883 mosquitto/data/ 
+sudo chown -R 1883:1883 mosquitto/log/ 
+```
+
+## Info
+
+We are using the `master` build of the Grafana Container, because thesStable version is broken for now.
+
+See: https://github.com/grafana/grafana/issues/19585#issuecomment-546973306
