@@ -2,7 +2,5 @@
 *.db
 .env
 
-mosquitto/data/*
-mosquitto/log/*
-nodered/*
-openhab/*
+volumes/
+backups/

@@ -42,7 +42,3 @@ sudo chown -R 1883:1883 mosquitto/log/
 ```
 
 ## Info
-
-We are using the `master` build of the Grafana Container, because thesStable version is broken for now.
-
-See: https://github.com/grafana/grafana/issues/19585#issuecomment-546973306
