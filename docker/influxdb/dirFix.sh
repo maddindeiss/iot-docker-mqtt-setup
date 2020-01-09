@@ -2,10 +2,7 @@
 
 echo "Create folders for InfluxDB "
 
-[ -d ./volumes/influxdb ] || sudo mkdir -p ./volumes/influxdb
-[ -d ./volumes/influxdb/data ] || sudo mkdir -p ./volumes/influxdb/data
-[ -d ./backups/influxdb ] || sudo mkdir -p ./backups/influxdb
-[ -d ./backups/influxdb/db ] || sudo mkdir -p ./backups/influxdb/db
-
-sudo chown -R $USER:$USER ./volumes/influxdb
-sudo chown -R $USER:$USER ./backups/influxdb
+[ -d ./volumes/influxdb ] || mkdir -p ./volumes/influxdb
+[ -d ./volumes/influxdb/data ] || mkdir -p ./volumes/influxdb/data
+[ -d ./backups/influxdb ] || mkdir -p ./backups/influxdb
+[ -d ./backups/influxdb/db ] || mkdir -p ./backups/influxdb/db
