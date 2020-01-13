@@ -7,38 +7,43 @@ This Setup is using the official Docker Images of
 * InfluxDB ([DockerHub](https://hub.docker.com/_/influxdb))
 * Grafana ([DockerHub](https://hub.docker.com/r/grafana/grafana/))
 
-## Usage
+## Install
 
-Use the `.env` file to place the Mosquitto credentials and your User/Group Id for OpenHab
+You will need to install git first to checkout the repository or download manually
 
 ```
-MOSQUITTO_USERNAME=mosquitto
-MOSQUITTO_PASSWORD=mosquitto
-
-OPENHAB_USER_ID=1000
-OPENHAB_GROUP_ID=1000
+sudo apt install git
 ```
+
+2.Checkout the repository with:
+
+```
+git clone git@github.com:maddindeiss/iot-docker-mqtt-setup.git 
+```
+
+
+#### To change the default passwords and other settings, there are .env files in the docker folder, for each iot service.
 
 ### Build and run
 
+Run the setup script first to create folder structure, set permissions and install all necessary packages
+
 ```
-docker-compose build
+. setup.sh
+```
+
+To get the IOT Stack started, run 
+
+```
 docker-compose up -d
 ```
 
-## Folder Permissions
+## Backup
 
-#### Grafana
 ```
-sudo chown -R 472:472 grafana/data/ 
-```
-
-More information: https://grafana.com/docs/installation/docker/#user-id-changes
-
-#### Mosquitto
-```
-sudo chown -R 1883:1883 mosquitto/data/ 
-sudo chown -R 1883:1883 mosquitto/log/ 
+rclone config
 ```
 
-## Info
+```
+. scripts/backup.sh
+```
