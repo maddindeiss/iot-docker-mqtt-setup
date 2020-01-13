@@ -8,7 +8,8 @@ echo "./docker/" >>list.txt
 echo "./volumes/" >>list.txt
 
 #if influxdb is running
-if [ $(docker ps | grep -c influxdb) -gt 0 ]; then
+if [ $(docker ps | grep -c influx) -gt 0 ]; then
+	chmod +x ./scripts/backup_influxdb.sh
 	./scripts/backup_influxdb.sh
 	echo "./backups/influxdb/" >>list.txt
 fi
@@ -42,11 +43,11 @@ du -h ./backups/$backupfile
 #remove older local backup files
 #to change backups retained,  change below +8 to whatever you want (days retained +1)
 ls -t1 ./backups/backup* | tail -n +8 | sudo xargs rm -f
-echo "last seven local backup files are saved in ~/IOTstack/backups"
+echo "last seven local backup files are saved in ./backups"
 
 #cloud related - OneDrive
 
 echo "synching to OneDrive"
 echo "latest 7 backup files are kept"
-## rclone sync -P ./backups --include "/backup*"  gdrive:/IOTstackBU/
-echo "synch with Google Drive complete"
+rclone sync -P ./backups --include "/backup*" Onedrive:Backups/IOT_Raspberry_Backup
+echo "synch with OneDrive complete"

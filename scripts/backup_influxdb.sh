@@ -6,7 +6,9 @@ echo "Moving old influxdb backups if they exist"
 sudo rm ./backups/influxdb/db_old/* >/dev/null 2>&1
 sudo mv ./backups/influxdb/db/* ./backups/influxdb/db_old/ >/dev/null 2>&1
 
+CONTAINER_ID=`docker ps | grep 'influx' | awk '{ print $1 }'`
+
 #execute the backup command
 echo "backing up influxdb database"
-docker exec influxdb influxd backup -portable /var/lib/influxdb/backup >/dev/null 2>&1
+docker exec $CONTAINER_ID influxd backup -portable /var/lib/influxdb/backup >/dev/null 2>&1
 echo "influxdb backup complete"
