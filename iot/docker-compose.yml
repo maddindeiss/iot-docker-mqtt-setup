@@ -1,6 +1,19 @@
 version: '3.7'
 
 services:
+  deconz:
+    image: marthoc/deconz
+    restart: unless-stopped
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
+    ports:
+      - "4443:4443"
+      - "1744:1744"
+    env_file:
+      - ./docker/deconz/deconz.env
+    volumes:
+      - /volumes/deconz:/root/.local/share/dresden-elektronik/deCONZ
+
   mosquitto:
     build:
       context: ./docker/mosquitto
@@ -23,8 +36,8 @@ services:
   openhab:
     image: "openhab/openhab:latest"
     restart: unless-stopped
-    devices:
-      - /dev/ttyACM0:/dev/ttyACM0
+    # devices:
+    #  - /dev/ttyACM0:/dev/ttyACM0
     ports:
       - "8080:8080"
       - "8443:8443"
@@ -43,8 +56,8 @@ services:
     build:
       context: ./docker/nodered
     restart: unless-stopped
-    devices:
-      - /dev/ttyACM0:/dev/ttyACM0
+    # devices:
+    #  - /dev/ttyACM0:/dev/ttyACM0
     ports:
       - "1880:1880"
     env_file:

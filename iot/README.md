@@ -47,3 +47,19 @@ rclone config
 ```
 . scripts/backup.sh
 ```
+
+
+## Issues
+
+I got a ```permission denied``` error, when I try to run Docker commands like ```docker info``` or ```docker-compose up```
+```
+Server:
+ERROR: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.24/info: dial unix /var/run/docker.sock: connect: permission denied
+```
+
+My user was already in the 'docker' group, so this was not the Problem.
+
+I fixed the problem by changing the access permissions:
+```
+sudo chmod 666 /var/run/docker.sock
+```
