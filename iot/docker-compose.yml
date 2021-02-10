@@ -1,8 +1,17 @@
 version: '3.7'
 
 services:
+  homeassistant:
+    image: homeassistant/home-assistant::2021.2.2
+    restart: unless-stopped
+    volumes:
+      - /volumes/homeassistant/config:/config
+    env_file:
+      - ./docker/homeassistant/homeassistant.env
+    network_mode: host
+
   deconz:
-    image: marthoc/deconz
+    image: marthoc/deconz:armv7-2.09.02
     restart: unless-stopped
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
@@ -13,6 +22,8 @@ services:
       - ./docker/deconz/deconz.env
     volumes:
       - /volumes/deconz:/root/.local/share/dresden-elektronik/deCONZ
+    networks:
+     - "iotnet"
 
   mosquitto:
     build:
@@ -33,31 +44,27 @@ services:
     networks:
      - "iotnet"
 
-  openhab:
-    image: "openhab/openhab:latest"
-    restart: unless-stopped
-    # devices:
-    #  - /dev/ttyACM0:/dev/ttyACM0
-    ports:
-      - "8080:8080"
-      - "8443:8443"
-      - "5007:5007"
-      - "8101:8101"
-    env_file:
-      - ./docker/openhab/openhab.env
-    volumes:
-      - "./volumes/openhab/addons:/openhab/addons"
-      - "./volumes/openhab/conf:/openhab/conf"
-      - "./volumes/openhab/userdata:/openhab/userdata"
-    networks:
-     - "iotnet"
+#  openhab:
+#    image: "openhab/openhab:latest"
+#    restart: unless-stopped
+#    ports:
+#      - "8080:8080"
+#      - "8443:8443"
+#      - "5007:5007"
+#      - "8101:8101"
+#    env_file:
+#      - ./docker/openhab/openhab.env
+#    volumes:
+#      - "./volumes/openhab/addons:/openhab/addons"
+#      - "./volumes/openhab/conf:/openhab/conf"
+#      - "./volumes/openhab/userdata:/openhab/userdata"
+#    networks:
+#     - "iotnet"
 
   node-red:
     build:
       context: ./docker/nodered
     restart: unless-stopped
-    # devices:
-    #  - /dev/ttyACM0:/dev/ttyACM0
     ports:
       - "1880:1880"
     env_file:
@@ -68,7 +75,7 @@ services:
       - "iotnet"
 
   influx:
-    image: influxdb:latest
+    image: influxdb:1.8.4
     restart: unless-stopped
     ports:
       - "8083:8083"
@@ -82,7 +89,7 @@ services:
        - "iotnet"
 
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana:7.4.0
     restart: unless-stopped
     ports:
       - "3000:3000"
