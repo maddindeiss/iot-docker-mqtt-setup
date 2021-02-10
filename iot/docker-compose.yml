@@ -5,9 +5,9 @@ services:
     image: homeassistant/home-assistant:2021.2.2
     restart: unless-stopped
     volumes:
-      - /volumes/homeassistant/config:/config
+      - "./volumes/homeassistant/config:/config"
     env_file:
-      - ./docker/homeassistant/homeassistant.env
+      - "./docker/homeassistant/homeassistant.env"
     network_mode: host
 
   deconz:
@@ -19,9 +19,9 @@ services:
       - "4443:4443"
       - "1744:1744"
     env_file:
-      - ./docker/deconz/deconz.env
+      - "./docker/deconz/deconz.env"
     volumes:
-      - /volumes/deconz:/root/.local/share/dresden-elektronik/deCONZ
+      - "./volumes/deconz:/root/.local/share/dresden-elektronik/deCONZ"
     networks:
      - "iotnet"
 
@@ -33,7 +33,7 @@ services:
       - "1883:1883"
       - "9001:9001"
     env_file:
-      - ./docker/mosquitto/mosquitto.env
+      - "./docker/mosquitto/mosquitto.env"
     volumes:
       - type: bind
         source: "./docker/mosquitto/mosquitto.conf"
@@ -68,7 +68,7 @@ services:
     ports:
       - "1880:1880"
     env_file:
-      - ./docker/nodered/nodered.env
+      - "./docker/nodered/nodered.env"
     volumes:
       - "./volumes/nodered/data:/data"
     networks:
@@ -81,10 +81,10 @@ services:
       - "8083:8083"
       - "8086:8086"
     env_file:
-      - ./docker/influxdb/influxdb.env
+      - "./docker/influxdb/influxdb.env"
     volumes:
-      - ./volumes/influxdb/data:/var/lib/influxdb
-      - ./backups/influxdb/db:/var/lib/influxdb/backup
+      - "./volumes/influxdb/data:/var/lib/influxdb"
+      - "./backups/influxdb/db:/var/lib/influxdb/backup"
     networks:
        - "iotnet"
 
@@ -94,10 +94,10 @@ services:
     ports:
       - "3000:3000"
     env_file:
-      - ./docker/grafana/grafana.env
+      - "./docker/grafana/grafana.env"
     volumes:
-      - ./volumes/grafana/data:/var/lib/grafana
-      - ./volumes/grafana/log:/var/log/grafana
+      - "./volumes/grafana/data:/var/lib/grafana"
+      - "./volumes/grafana/log:/var/log/grafana"
     networks:
       - "iotnet"
 
