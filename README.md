@@ -1,9 +1,9 @@
-# IoT Docker Setup with Node-Red, Mosquitto, OpenHab, InfluxDB and Grafana
+# IoT Docker Setup with Node-Red, Mosquitto, Home Assistant, InfluxDB and Grafana
 
 This Setup is using the official Docker Images of
 * Node-Red ([DockerHub](https://hub.docker.com/r/nodered/node-red/))
 * Mosquitto ([DockerHub](https://hub.docker.com/_/eclipse-mosquitto/))
-* OpenHab ([DockerHub](https://hub.docker.com/r/openhab/openhab/))
+* HomeAssistant ([DockerHub](https://hub.docker.com/r/homeassistant/home-assistant/))
 * InfluxDB ([DockerHub](https://hub.docker.com/_/influxdb))
 * Grafana ([DockerHub](https://hub.docker.com/r/grafana/grafana/))
 
@@ -15,22 +15,23 @@ You will need to install git first to checkout the repository or download manual
 sudo apt install git
 ```
 
-2.Checkout the repository with:
+Checkout the repository with:
 
 ```
 git clone git@github.com:maddindeiss/iot-docker-mqtt-setup.git 
 ```
 
 
-#### To change the default passwords and other settings, there are .env files in the docker folder, for each iot service.
+## Run
 
-### Build and run
 
 Run the setup script first to create folder structure, set permissions and install all necessary packages
 
 ```
-. setup.sh
+bash setup.sh
 ```
+
+> To change the default passwords and other settings, have a look on the .env files in the docker folder.
 
 To get the IOT Stack started, run 
 
@@ -45,7 +46,7 @@ rclone config
 ```
 
 ```
-. scripts/backup.sh
+bash scripts/backup.sh
 ```
 
 

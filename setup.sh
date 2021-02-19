@@ -3,7 +3,7 @@
 echo "Setup IoT environment"
 
 echo "Create default folders"
-bash ./dirFixSetup.sh
+bash ./scripts/dirFixSetup.sh
 
 echo "Update and upgrade sources"
 sudo apt update && sudo apt full-upgrade && sudo rpi-update -y ;
