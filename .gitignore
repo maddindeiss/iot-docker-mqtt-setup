@@ -1,6 +1,7 @@
 *.log
 *.db
 .env
+.vscode
 
 volumes/
 backups/

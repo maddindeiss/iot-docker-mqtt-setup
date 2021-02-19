@@ -1,6 +1,30 @@
 version: '3.7'
 
 services:
+  homeassistant:
+    image: homeassistant/home-assistant:2021.2.3
+    restart: unless-stopped
+    volumes:
+      - "./volumes/homeassistant/config:/config"
+    env_file:
+      - "./docker/homeassistant/homeassistant.env"
+    network_mode: host
+
+  deconz:
+    image: marthoc/deconz:armv7-2.10.00
+    restart: unless-stopped
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
+    ports:
+      - "4443:4443"
+      - "1744:1744"
+    env_file:
+      - "./docker/deconz/deconz.env"
+    volumes:
+      - "./volumes/deconz:/root/.local/share/dresden-elektronik/deCONZ"
+    networks:
+     - "iotnet"
+
   mosquitto:
     build:
       context: ./docker/mosquitto
@@ -9,7 +33,7 @@ services:
       - "1883:1883"
       - "9001:9001"
     env_file:
-      - ./docker/mosquitto/mosquitto.env
+      - "./docker/mosquitto/mosquitto.env"
     volumes:
       - type: bind
         source: "./docker/mosquitto/mosquitto.conf"
@@ -20,64 +44,60 @@ services:
     networks:
      - "iotnet"
 
-  openhab:
-    image: "openhab/openhab:latest"
-    restart: unless-stopped
-    devices:
-      - /dev/ttyACM0:/dev/ttyACM0
-    ports:
-      - "8080:8080"
-      - "8443:8443"
-      - "5007:5007"
-      - "8101:8101"
-    env_file:
-      - ./docker/openhab/openhab.env
-    volumes:
-      - "./volumes/openhab/addons:/openhab/addons"
-      - "./volumes/openhab/conf:/openhab/conf"
-      - "./volumes/openhab/userdata:/openhab/userdata"
-    networks:
-     - "iotnet"
+#  openhab:
+#    image: "openhab/openhab:latest"
+#    restart: unless-stopped
+#    ports:
+#      - "8080:8080"
+#      - "8443:8443"
+#      - "5007:5007"
+#      - "8101:8101"
+#    env_file:
+#      - ./docker/openhab/openhab.env
+#    volumes:
+#      - "./volumes/openhab/addons:/openhab/addons"
+#      - "./volumes/openhab/conf:/openhab/conf"
+#      - "./volumes/openhab/userdata:/openhab/userdata"
+#    networks:
+#     - "iotnet"
 
   node-red:
     build:
       context: ./docker/nodered
     restart: unless-stopped
-    devices:
-      - /dev/ttyACM0:/dev/ttyACM0
     ports:
       - "1880:1880"
     env_file:
-      - ./docker/nodered/nodered.env
+      - "./docker/nodered/nodered.env"
     volumes:
       - "./volumes/nodered/data:/data"
     networks:
       - "iotnet"
 
   influx:
-    image: influxdb:latest
+    image: influxdb:1.8.4
     restart: unless-stopped
     ports:
       - "8083:8083"
       - "8086:8086"
     env_file:
-      - ./docker/influxdb/influxdb.env
+      - "./docker/influxdb/influxdb.env"
     volumes:
-      - ./volumes/influxdb/data:/var/lib/influxdb
-      - ./backups/influxdb/db:/var/lib/influxdb/backup
+      - "./volumes/influxdb/data:/var/lib/influxdb"
+      - "./backups/influxdb/db:/var/lib/influxdb/backup"
     networks:
        - "iotnet"
 
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana:7.4.2
     restart: unless-stopped
     ports:
       - "3000:3000"
     env_file:
-      - ./docker/grafana/grafana.env
+      - "./docker/grafana/grafana.env"
     volumes:
-      - ./volumes/grafana/data:/var/lib/grafana
-      - ./volumes/grafana/log:/var/log/grafana
+      - "./volumes/grafana/data:/var/lib/grafana"
+      - "./volumes/grafana/log:/var/log/grafana"
     networks:
       - "iotnet"
 

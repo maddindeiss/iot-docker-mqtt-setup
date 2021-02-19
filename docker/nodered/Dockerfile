@@ -1,4 +1,4 @@
-FROM nodered/node-red:latest
+FROM nodered/node-red:1.2.9-12-arm32v7
 
 USER root
 RUN adduser node-red dialout
