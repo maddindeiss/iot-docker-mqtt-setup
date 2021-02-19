@@ -13,10 +13,9 @@ echo "Install rclone"
 curl https://rclone.org/install.sh | sudo bash
 echo "Please run 'rclone config' to configure the rclone google drive backup"
 
-echo "Install Packages (git, build-essential, python3, python3-pi,p gcc, libffi-dev, libssl-dev, python3-dev, samba, samba-common-bin)"
-PACKAGES="git build-essential python3 python3-pip gcc libffi-dev libssl-dev python3-dev samba samba-common-bin"
+echo "Install Packages (git, build-essential, python3, python3-pi,p gcc, libffi-dev, libssl-dev, python3-dev)"
+PACKAGES="git build-essential python3 python3-pip gcc libffi-dev libssl-dev python3-dev"
 sudo apt install $PACKAGES -qy
-
 
 echo "Install Docker and Docker-Compose"
 if command_exists docker; then
