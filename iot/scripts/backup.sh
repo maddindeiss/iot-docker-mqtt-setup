@@ -48,6 +48,6 @@ echo "Last seven local backup files are saved in ./backups"
 
 echo "Copy backups to OneDrive"
 echo "All backups younger than 24h are copied to Onedrive"
-rclone copy -P ./backups --include "/backup*" Onedrive:Backups/IOT_Raspberry_Backup --max-age 24h
+rclone copy --max-age 24h -P ./backups --include "/backup*" Onedrive:Backups/IOT_Raspberry_Backup
 
 echo "Copying to OneDrive complete!"
