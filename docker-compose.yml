@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   homeassistant:
-    image: homeassistant/home-assistant:2021.2.2
+    image: homeassistant/home-assistant:2021.2.3
     restart: unless-stopped
     volumes:
       - "./volumes/homeassistant/config:/config"
@@ -11,7 +11,7 @@ services:
     network_mode: host
 
   deconz:
-    image: marthoc/deconz:armv7-2.09.02
+    image: marthoc/deconz:armv7-2.10.00
     restart: unless-stopped
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
@@ -89,7 +89,7 @@ services:
        - "iotnet"
 
   grafana:
-    image: grafana/grafana:7.4.0
+    image: grafana/grafana:7.4.2
     restart: unless-stopped
     ports:
       - "3000:3000"
