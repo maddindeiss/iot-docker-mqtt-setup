@@ -1,9 +1,10 @@
-# IoT Docker Setup with Node-Red, Mosquitto, Home Assistant, InfluxDB and Grafana
+# IoT Docker Setup with Node-Red, Mosquitto, Home Assistant, deCONZ, InfluxDB and Grafana
 
 This Setup is using the official Docker Images of
 * Node-Red ([DockerHub](https://hub.docker.com/r/nodered/node-red/))
 * Mosquitto ([DockerHub](https://hub.docker.com/_/eclipse-mosquitto/))
 * HomeAssistant ([DockerHub](https://hub.docker.com/r/homeassistant/home-assistant/))
+* deCONZ ([DockerHub](https://hub.docker.com/r/marthoc/deconz/))
 * InfluxDB ([DockerHub](https://hub.docker.com/_/influxdb))
 * Grafana ([DockerHub](https://hub.docker.com/r/grafana/grafana/))
 

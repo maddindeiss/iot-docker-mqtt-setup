@@ -44,23 +44,6 @@ services:
     networks:
      - "iotnet"
 
-#  openhab:
-#    image: "openhab/openhab:latest"
-#    restart: unless-stopped
-#    ports:
-#      - "8080:8080"
-#      - "8443:8443"
-#      - "5007:5007"
-#      - "8101:8101"
-#    env_file:
-#      - ./docker/openhab/openhab.env
-#    volumes:
-#      - "./volumes/openhab/addons:/openhab/addons"
-#      - "./volumes/openhab/conf:/openhab/conf"
-#      - "./volumes/openhab/userdata:/openhab/userdata"
-#    networks:
-#     - "iotnet"
-
   node-red:
     build:
       context: ./docker/nodered
