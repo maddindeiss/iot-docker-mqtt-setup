@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   homeassistant:
-    image: homeassistant/home-assistant:2021.2.3
+    image: homeassistant/home-assistant:2021.3.3
     restart: unless-stopped
     volumes:
       - "./volumes/homeassistant/config:/config"
@@ -11,7 +11,7 @@ services:
     network_mode: host
 
   deconz:
-    image: marthoc/deconz:armv7-2.10.00
+    image: marthoc/deconz:armv7-2.10.02
     restart: unless-stopped
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
