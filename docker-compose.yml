@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   homeassistant:
-    image: homeassistant/raspberrypi4-homeassistant:2021.3.4
+    image: homeassistant/raspberrypi4-homeassistant:2021.7.4
     restart: unless-stopped
     volumes:
       - "./volumes/homeassistant/config:/config"
@@ -12,13 +12,14 @@ services:
     network_mode: host
 
   deconz:
-    image: marthoc/deconz:armv7-2.10.02
+    image: marthoc/deconz:armv7-2.12.03
     restart: unless-stopped
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
     ports:
       - "4443:4443"
       - "1744:1744"
+      - "5900:5900"
     env_file:
       - "./docker/deconz/deconz.env"
     volumes:
