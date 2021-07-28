@@ -2,13 +2,14 @@ version: '3.7'
 
 services:
   homeassistant:
-    image: homeassistant/raspberrypi4-homeassistant:2021.7.4
+    image: homeassistant/raspberrypi4-homeassistant:2021.7.3
     restart: unless-stopped
+    env_file:
+      - "./docker/homeassistant/homeassistant.env"
     volumes:
       - "./volumes/homeassistant/config:/config"
       - "./volumes/homeassistant/docker/run:/etc/services.d/home-assistant/run"
-    env_file:
-      - "./docker/homeassistant/homeassistant.env"
+    privileged: true
     network_mode: host
 
   deconz:
