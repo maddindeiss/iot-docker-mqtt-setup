@@ -1,4 +1,4 @@
-FROM nodered/node-red:1.2.9-12-arm32v7
+FROM nodered/node-red:2.2.2-12
 
 USER root
 RUN adduser node-red dialout
@@ -9,3 +9,4 @@ RUN npm install \
     node-red-node-pi-gpiod \
     node-red-dashboard \
     node-red-contrib-influxdb \
+    node-red-contrib-home-assistant-websocket \
