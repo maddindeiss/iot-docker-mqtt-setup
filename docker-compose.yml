@@ -61,7 +61,7 @@ services:
       - "iotnet"
 
   influx:
-    image: influxdb:2.1.1
+    image: influxdb:1.8.10
     restart: unless-stopped
     ports:
       - "8083:8083"
@@ -69,9 +69,11 @@ services:
     env_file:
       - "./docker/influxdb/influxdb.env"
     volumes:
-      - "./volumes/influxdb/data:/var/lib/influxdb2"
-      - "./volumes/influxdb/config:/etc/influxdb2"
-      - "./backups/influxdb/db:/var/lib/influxdb2/backup"
+      # - "./volumes/influxdb/data:/var/lib/influxdb2"
+      # - "./volumes/influxdb/config:/etc/influxdb2"
+      # - "./backups/influxdb/db:/var/lib/influxdb2/backup"
+      - "./volumes/influxdb/data:/var/lib/influxdb"
+      - "./backups/influxdb/db:/var/lib/influxdb/backup"
     networks:
        - "iotnet"
 
