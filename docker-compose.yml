@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   homeassistant:
-    image: homeassistant/raspberrypi4-homeassistant:2022.3
+    image: homeassistant/raspberrypi4-homeassistant:2022.3.5
     restart: unless-stopped
     env_file:
       - "./docker/homeassistant/homeassistant.env"
