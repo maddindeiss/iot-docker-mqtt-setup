@@ -1,4 +1,4 @@
-FROM eclipse-mosquitto:2.0.9
+FROM eclipse-mosquitto:2.0.14
 
 ADD docker-entrypoint.sh /
 

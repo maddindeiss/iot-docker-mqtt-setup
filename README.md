@@ -4,7 +4,7 @@ This Setup is using the official Docker Images of
 * Node-Red ([DockerHub](https://hub.docker.com/r/nodered/node-red/))
 * Mosquitto ([DockerHub](https://hub.docker.com/_/eclipse-mosquitto/))
 * HomeAssistant ([DockerHub](https://hub.docker.com/r/homeassistant/home-assistant/))
-* deCONZ ([DockerHub](https://hub.docker.com/r/marthoc/deconz/))
+* deCONZ ([DockerHub](https://hub.docker.com/r/deconzcommunity/deconz/))
 * InfluxDB ([DockerHub](https://hub.docker.com/_/influxdb))
 * Grafana ([DockerHub](https://hub.docker.com/r/grafana/grafana/))
 
@@ -25,6 +25,11 @@ git clone git@github.com:maddindeiss/iot-docker-mqtt-setup.git
 
 ## Run
 
+#### Pre-requisite
+Before running te setup for the deconz Docker container, you may need to add your Linux user to the dialout group, which allows the user access to serial devices (i.e. Conbee/Conbee II/RaspBee/RaspBeeII):
+```
+sudo usermod -a -G dialout $USER
+```
 
 Run the setup script first to create folder structure, set permissions and install all necessary packages
 
