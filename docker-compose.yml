@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   homeassistant:
-    image: homeassistant/raspberrypi4-homeassistant:2022.3.5
+    image: homeassistant/raspberrypi4-homeassistant:2022.10.0
     restart: unless-stopped
     env_file:
       - "./docker/homeassistant/homeassistant.env"
@@ -13,7 +13,7 @@ services:
     network_mode: host
 
   deconz:
-    image: deconzcommunity/deconz:2.15.00
+    image: deconzcommunity/deconz:2.18.02
     restart: unless-stopped
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
