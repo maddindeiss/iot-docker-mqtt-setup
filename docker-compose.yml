@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   homeassistant:
-    image: homeassistant/raspberrypi4-homeassistant:2022.10.0
+    image: homeassistant/raspberrypi4-homeassistant:2023.6.3
     restart: unless-stopped
     env_file:
       - "./docker/homeassistant/homeassistant.env"
@@ -13,7 +13,7 @@ services:
     network_mode: host
 
   deconz:
-    image: deconzcommunity/deconz:2.18.02
+    image: deconzcommunity/deconz:2.23.00
     restart: unless-stopped
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
@@ -78,7 +78,7 @@ services:
        - "iotnet"
 
   grafana:
-    image: grafana/grafana:8.4.4
+    image: grafana/grafana:9.5.8
     restart: unless-stopped
     ports:
       - "3000:3000"

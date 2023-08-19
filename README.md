@@ -58,7 +58,9 @@ bash scripts/backup.sh
 
 ## Issues
 
-I got a ```permission denied``` error, when I try to run Docker commands like ```docker info``` or ```docker-compose up```
+#### Permission denied on docker commands
+
+Got a ```permission denied``` error, when I try to run Docker commands like ```docker info``` or ```docker-compose up```
 ```
 Server:
 ERROR: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.24/info: dial unix /var/run/docker.sock: connect: permission denied
@@ -70,3 +72,30 @@ I fixed the problem by changing the access permissions:
 ```
 sudo chmod 666 /var/run/docker.sock
 ```
+
+
+
+#### Deconz error on startup
+
+Error:
+```
+Fatal Python error: init_interp_main: can't initialize time
+```
+
+Solution: 
+
+Update ```libseccomp2``` to ```>=2.5.4```
+
+https://packages.debian.org/sid/armhf/libseccomp2/download
+
+```
+wget http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.5.4-1+b1_armhf.deb
+
+sudo dpkg -i libseccomp2_2.5.4-1+b1_armhf.deb
+
+```
+
+## Software Packages / Links
+
+* Deconz Firmware: https://deconz.dresden-elektronik.de/deconz-firmware/
+* Deconz Firmware Changelog: https://github.com/dresden-elektronik/deconz-rest-plugin/wiki/Firmware-Changelog

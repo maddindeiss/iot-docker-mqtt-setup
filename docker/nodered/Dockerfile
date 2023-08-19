@@ -1,4 +1,4 @@
-FROM nodered/node-red:2.2.3-12
+FROM nodered/node-red:3.0.2-14
 
 USER root
 RUN adduser node-red dialout
