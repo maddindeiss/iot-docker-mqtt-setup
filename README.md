@@ -73,7 +73,23 @@ I fixed the problem by changing the access permissions:
 sudo chmod 666 /var/run/docker.sock
 ```
 
+#### Error getting credentials on docker commands
+I had the following error when I tried to start a docker container: 
+```error getting credentials - err: exit status 1, out: 'Cannot autolaunch D-Bus without X11 $DISPLAY'```
 
+By default, Docker looks for the native binary on each of the platforms; i.e., “osxkeychain” on macOS, “wincred” on windows, and “pass” on Linux. A special case is that on Linux, Docker will fall back to the “secretservice” binary if it cannot find the “pass” binary.
+
+he simplest solution to fix the “Cannot autolaunch D-Bus without X11 $DISPLAY” error is to install pass.
+
+```
+sudo apt-get install pass gnupg2
+
+# create a gpg2 key
+gpg2 --gen-key
+
+# create the password store using the gpg user id
+pass init $gpg_id
+```
 
 #### Deconz error on startup
 
