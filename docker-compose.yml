@@ -1,8 +1,6 @@
-version: '3.7'
-
 services:
   homeassistant:
-    image: homeassistant/raspberrypi4-homeassistant:2023.6.3
+    image: ghcr.io/home-assistant/raspberrypi4-homeassistant:2024.9.3
     restart: unless-stopped
     env_file:
       - "./docker/homeassistant/homeassistant.env"
@@ -13,7 +11,7 @@ services:
     network_mode: host
 
   deconz:
-    image: deconzcommunity/deconz:2.23.00
+    image: ghcr.io/deconz-community/deconz-docker:2.28.1
     restart: unless-stopped
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
@@ -61,24 +59,21 @@ services:
       - "iotnet"
 
   influx:
-    image: influxdb:1.8.10
+    image: influxdb:2.7.10
     restart: unless-stopped
     ports:
-      - "8083:8083"
       - "8086:8086"
     env_file:
       - "./docker/influxdb/influxdb.env"
     volumes:
-      # - "./volumes/influxdb/data:/var/lib/influxdb2"
-      # - "./volumes/influxdb/config:/etc/influxdb2"
-      # - "./backups/influxdb/db:/var/lib/influxdb2/backup"
-      - "./volumes/influxdb/data:/var/lib/influxdb"
-      - "./backups/influxdb/db:/var/lib/influxdb/backup"
+      - "./volumes/influxdb2/data:/var/lib/influxdb2"
+      - "./volumes/influxdb2/config:/etc/influxdb2"
+      - "./backups/influxdb2/db:/var/lib/influxdb2/backup"
     networks:
        - "iotnet"
 
   grafana:
-    image: grafana/grafana:9.5.8
+    image: grafana/grafana:11.2.1
     restart: unless-stopped
     ports:
       - "3000:3000"

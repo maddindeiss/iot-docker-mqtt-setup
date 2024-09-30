@@ -14,4 +14,7 @@ fi
 touch passwordfile
 mosquitto_passwd -b passwordfile $MOSQUITTO_USERNAME $MOSQUITTO_PASSWORD
 
+chmod 0700 passwordfile
+chown mosquitto: passwordfile
+
 exec "$@"
