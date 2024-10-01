@@ -1,0 +1,18 @@
+services:
+  influx:
+    image: influxdb:2.7.10
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    env_file:
+      - "./docker/influxdb.env"
+    volumes:
+      - "./volume/data:/var/lib/influxdb2"
+      - "./volume/config:/etc/influxdb2"
+      - "./backup/db:/var/lib/influxdb2/backup"
+    networks:
+       - "iotnet"
+
+networks:
+  iotnet:
+    driver: bridge

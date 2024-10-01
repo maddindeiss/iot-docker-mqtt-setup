@@ -1,0 +1,17 @@
+services:
+  node-red:
+    build:
+      context: ./docker/nodered
+    restart: unless-stopped
+    ports:
+      - "1880:1880"
+    env_file:
+      - "./docker/nodered.env"
+    volumes:
+      - "./volume/data:/data"
+    networks:
+      - "iotnet"
+
+networks:
+  iotnet:
+    driver: bridge

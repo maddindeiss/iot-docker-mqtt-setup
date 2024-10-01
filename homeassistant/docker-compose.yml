@@ -1,0 +1,15 @@
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/raspberrypi4-homeassistant:2024.9.3
+    restart: unless-stopped
+    env_file:
+      - "./docker/homeassistant.env"
+    volumes:
+      - "./volume/config:/config"
+      - "./volume/docker/run:/etc/services.d/home-assistant/run"
+    privileged: true
+    network_mode: host
+
+networks:
+  iotnet:
+    driver: bridge

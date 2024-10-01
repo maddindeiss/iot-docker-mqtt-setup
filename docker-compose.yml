@@ -85,6 +85,16 @@ services:
     networks:
       - "iotnet"
 
+  dockge:
+    image: louislam/dockge:1.4.2
+    restart: unless-stopped
+    ports:
+      - 5001:5001
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - "./volumes/dockge/data:/app/data"
+      - "./volumes/dockge/stacks:/opt/stacks"
+
 networks:
   iotnet:
     driver: bridge
