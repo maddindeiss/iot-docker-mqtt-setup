@@ -1,6 +1,6 @@
 echo "Create subfolders and fix permissions"
 
-for RootFolder in ./*/ ; do
+for RootFolder in ./services/*/ ; do
     if [ -d "${RootFolder}docker" ]; then
         DockerFolder="${RootFolder}docker/"
         if [ -d "${DockerFolder}" ]; then
