@@ -10,4 +10,3 @@ COMPONENT_DIR="$(dirname "$SCRIPT_DIR")"
 
 [ -d "$COMPONENT_DIR/volume" ] || mkdir -p "$COMPONENT_DIR/volume"
 [ -d "$COMPONENT_DIR/volume/data" ] || mkdir -p "$COMPONENT_DIR/volume/data"
-[ -d "$COMPONENT_DIR/volume/stacks" ] || mkdir -p "$COMPONENT_DIR/volume/stacks"

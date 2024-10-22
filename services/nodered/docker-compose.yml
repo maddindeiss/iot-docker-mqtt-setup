@@ -1,17 +1,19 @@
 services:
   node-red:
     build:
-      context: ./docker/nodered
+      context: ./docker
+    container_name: node-red
     restart: unless-stopped
+    user: 1000:1000
     ports:
-      - "1880:1880"
+      - 1880:1880
     env_file:
-      - "./docker/nodered.env"
+      - ./docker/nodered.env
     volumes:
-      - "./volume/data:/data"
+      - ./volume/data:/data
     networks:
-      - "iotnet"
-
+      - iotnet
 networks:
   iotnet:
     driver: bridge
+    name: iotnet_network

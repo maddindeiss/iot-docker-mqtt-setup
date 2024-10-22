@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Create folders for NodeRed"
+echo "Create folders for Uptime-Kuma"
 
 # Get the directory where the script is located
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -10,5 +10,3 @@ COMPONENT_DIR="$(dirname "$SCRIPT_DIR")"
 
 [ -d "$COMPONENT_DIR/volume" ] || mkdir -p "$COMPONENT_DIR/volume"
 [ -d "$COMPONENT_DIR/volume/data" ] || mkdir -p "$COMPONENT_DIR/volume/data"
-
-sudo chown -R 1000:1000 "$COMPONENT_DIR/volume/data"

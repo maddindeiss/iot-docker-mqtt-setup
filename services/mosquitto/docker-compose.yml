@@ -1,7 +1,8 @@
 services:
   mosquitto:
     build:
-      context: ./docker/mosquitto
+      context: ./docker
+    container_name: mosquitto
     restart: unless-stopped
     ports:
       - "1883:1883"
@@ -21,3 +22,4 @@ services:
 networks:
   iotnet:
     driver: bridge
+    name: iotnet_network

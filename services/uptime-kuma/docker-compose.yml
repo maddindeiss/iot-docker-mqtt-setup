@@ -1,0 +1,17 @@
+services:
+  uptime-kuma:
+    build:
+      context: ./docker
+    container_name: uptime-kuma
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./volume/data:/app/data
+    ports:
+      - 3001:3001
+    restart: always
+    networks:
+      - iotnet
+networks:
+  iotnet:
+    driver: bridge
+    name: iotnet_network
