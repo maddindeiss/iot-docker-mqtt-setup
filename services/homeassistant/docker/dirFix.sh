@@ -13,4 +13,12 @@ COMPONENT_DIR="$(dirname "$SCRIPT_DIR")"
 [ -d "$COMPONENT_DIR/volume/docker" ] || mkdir -p "$COMPONENT_DIR/volume/docker"
 
 # Run Home Assistant as non-root using the official docker image
-git clone --branch v2.3 https://github.com/tribut/homeassistant-docker-venv "$COMPONENT_DIR/volume/docker"
+git clone https://github.com/tribut/homeassistant-docker-venv "$COMPONENT_DIR/volume/docker"
+
+ORIGINAL_DIR=$(pwd)
+cd "$COMPONENT_DIR/volume/docker"
+
+# Checkout specific commit hash: Fix run script for Home Assistant 2024.10+
+git reset --hard 9960238
+
+cd "$ORIGINAL_DIR"

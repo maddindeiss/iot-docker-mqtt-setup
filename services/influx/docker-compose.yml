@@ -2,16 +2,17 @@ services:
   influx:
     image: influxdb:2.7.10
     restart: unless-stopped
+    container_name: influx
     ports:
-      - "8086:8086"
+      - 8086:8086
     env_file:
-      - "./docker/influxdb.env"
+      - ./docker/influxdb.env
     volumes:
-      - "./volume/data:/var/lib/influxdb2"
-      - "./volume/config:/etc/influxdb2"
-      - "./backup/db:/var/lib/influxdb2/backup"
+      - ./volume/data:/var/lib/influxdb2
+      - ./volume/config:/etc/influxdb2
+      - ./backup/db:/var/lib/influxdb2/backup
     networks:
-       - "iotnet"
+       - iotnet
 
 networks:
   iotnet:

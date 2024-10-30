@@ -2,18 +2,19 @@ services:
   deconz:
     image: ghcr.io/deconz-community/deconz-docker:2.28.1
     restart: unless-stopped
+    container_name: deconz
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
     ports:
-      - "4443:4443"
-      - "1744:1744"
-      - "5900:5900"
+      - 4443:4443
+      - 1744:1744
+      - 5900:5900
     env_file:
-      - "./docker/deconz.env"
+      - ./docker/deconz.env
     volumes:
-      - "./volume:/opt/deCONZ"
+      - ./volume:/opt/deCONZ
     networks:
-     - "iotnet"
+     - iotnet
 
 networks:
   iotnet:

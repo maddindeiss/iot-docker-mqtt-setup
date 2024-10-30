@@ -1,16 +1,17 @@
 services:
   grafana:
     image: grafana/grafana:11.2.1
+    container_name: grafana
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - 3000:3000
     env_file:
-      - "./docker/grafana.env"
+      - ./docker/grafana.env
     volumes:
-      - "./volume/data:/var/lib/grafana"
-      - "./volume/log:/var/log/grafana"
+      - ./volume/data:/var/lib/grafana
+      - ./volume/log:/var/log/grafana
     networks:
-      - "iotnet"
+      - iotnet
 
 networks:
   iotnet:
