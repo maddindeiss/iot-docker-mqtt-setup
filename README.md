@@ -3,10 +3,15 @@
 This Setup is using the official Docker Images of
 * Node-Red ([DockerHub](https://hub.docker.com/r/nodered/node-red/))
 * Mosquitto ([DockerHub](https://hub.docker.com/_/eclipse-mosquitto/))
-* HomeAssistant ([DockerHub](https://hub.docker.com/r/homeassistant/home-assistant/))
-* deCONZ ([DockerHub](https://hub.docker.com/r/deconzcommunity/deconz/))
+* HomeAssistant ([Github](https://github.com/home-assistant/core/pkgs/container/raspberrypi4-homeassistant))
+* deCONZ ([Github](https://github.com/deconz-community/deconz-docker/pkgs/container/deconz-docker))
 * InfluxDB ([DockerHub](https://hub.docker.com/_/influxdb))
 * Grafana ([DockerHub](https://hub.docker.com/r/grafana/grafana/))
+* Dockge ([DockerHub](https://hub.docker.com/r/louislam/dockge))
+* Heimdall ([Github](https://github.com/linuxserver/docker-heimdall/pkgs/container/heimdall))
+* Teslamate ([DockerHub](https://hub.docker.com/r/teslamate/teslamate))
+* Uptime-kuma ([DockerHub](https://hub.docker.com/r/louislam/uptime-kuma/))
+
 
 ## Install
 

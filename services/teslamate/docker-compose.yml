@@ -1,6 +1,6 @@
 services:
   teslamate:
-    image: teslamate/teslamate:1.30
+    image: teslamate/teslamate:1.31.1
     container_name: teslamate
     restart: always
     env_file:
@@ -15,7 +15,7 @@ services:
       - iotnet
 
   postgres:
-    image: postgres:16.4
+    image: postgres:17.0
     restart: always
     env_file:
       - ./docker/postgres.env
