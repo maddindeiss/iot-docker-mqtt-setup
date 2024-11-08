@@ -1,0 +1,19 @@
+apiVersion: 1
+
+datasources:
+  - name: TeslaMate
+    type: postgres
+    url: postgres:5432
+    user: _USER_
+    database: teslamate
+    access: proxy
+    basicAuth: false
+    withCredentials: false
+    isDefault: true
+    secureJsonData:
+      password: _PASSWORD_
+    jsonData:
+      postgresVersion: 1500
+      sslmode: disable
+    version: 1
+    editable: true

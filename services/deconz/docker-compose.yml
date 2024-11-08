@@ -4,7 +4,7 @@ services:
     restart: unless-stopped
     container_name: deconz
     devices:
-      - /dev/ttyACM0:/dev/ttyACM0
+      - /dev/ttyUSB0:/dev/ttyUSB0
     ports:
       - 4443:4443
       - 1744:1744
