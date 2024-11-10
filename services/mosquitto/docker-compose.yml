@@ -1,0 +1,25 @@
+services:
+  mosquitto:
+    build:
+      context: ./docker
+    container_name: mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    env_file:
+      - "./docker/mosquitto.env"
+    volumes:
+      - type: bind
+        source: "./docker/mosquitto.conf"
+        target: "/mosquitto/config/mosquitto.conf"
+        read_only: true
+      - "./volume/data:/mosquitto/data"
+      - "./volume/log:/mosquitto/log"
+    networks:
+     - "iotnet"
+
+networks:
+  iotnet:
+    driver: bridge
+    name: iotnet_network

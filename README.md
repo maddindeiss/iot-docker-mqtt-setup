@@ -3,14 +3,19 @@
 This Setup is using the official Docker Images of
 * Node-Red ([DockerHub](https://hub.docker.com/r/nodered/node-red/))
 * Mosquitto ([DockerHub](https://hub.docker.com/_/eclipse-mosquitto/))
-* HomeAssistant ([DockerHub](https://hub.docker.com/r/homeassistant/home-assistant/))
-* deCONZ ([DockerHub](https://hub.docker.com/r/deconzcommunity/deconz/))
+* HomeAssistant ([Github](https://github.com/home-assistant/core/pkgs/container/raspberrypi4-homeassistant))
+* deCONZ ([Github](https://github.com/deconz-community/deconz-docker/pkgs/container/deconz-docker))
 * InfluxDB ([DockerHub](https://hub.docker.com/_/influxdb))
 * Grafana ([DockerHub](https://hub.docker.com/r/grafana/grafana/))
+* Dockge ([DockerHub](https://hub.docker.com/r/louislam/dockge))
+* Heimdall ([Github](https://github.com/linuxserver/docker-heimdall/pkgs/container/heimdall))
+* Teslamate ([DockerHub](https://hub.docker.com/r/teslamate/teslamate))
+* Uptime-kuma ([DockerHub](https://hub.docker.com/r/louislam/uptime-kuma/))
+
 
 ## Install
 
-You will need to install git first to checkout the repository or download manually
+You will need to install git to check out the repository or download it manually
 
 ```
 sudo apt install git
@@ -22,28 +27,33 @@ Checkout the repository with:
 git clone git@github.com:maddindeiss/iot-docker-mqtt-setup.git 
 ```
 
-
-## Run
-
-#### Pre-requisite
-Before running te setup for the deconz Docker container, you may need to add your Linux user to the dialout group, which allows the user access to serial devices (i.e. Conbee/Conbee II/RaspBee/RaspBeeII):
-```
-sudo usermod -a -G dialout $USER
-```
-
-Run the setup script first to create folder structure, set permissions and install all necessary packages
+The first step is to run the setup script to create the folder structure, set permissions and install all the necessary packages.
 
 ```
 bash setup.sh
 ```
 
-> To change the default passwords and other settings, have a look on the .env files in the docker folder.
 
-To get the IOT Stack started, run 
+## Setup
 
+You will need to change some default passwords and settings. 
+
+To make these changes, have a look at the .env files in the docker folders of each service.
+
+#### DECONZ
+Before running the setup for the deconz Docker container, you may need to add your Linux user to the dialout group, which allows the user to access to serial devices (i.e. Conbee/Conbee II/Conbee III/RaspBee/RaspBeeII):
 ```
-docker-compose up -d
+sudo usermod -a -G dialout $USER
 ```
+
+## Run
+
+To get the IOT Stack started, run ``docker compose up -d`` in the individual service folder, or run for example:
+
+``docker compose -f ./services/nodered/docker-compose.yml up -d``
+
+from the root folder for each service you want to start.
+
 
 ## Backup
 
@@ -54,6 +64,7 @@ rclone config
 ```
 bash scripts/backup.sh
 ```
+
 
 
 ## Issues

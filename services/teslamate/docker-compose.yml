@@ -1,0 +1,30 @@
+services:
+  teslamate:
+    image: teslamate/teslamate:1.31.1
+    container_name: teslamate
+    restart: always
+    env_file:
+      - ./docker/teslamate.env
+    ports:
+      - 4000:4000
+    volumes:
+      - ./volume/import:/opt/app/import
+    cap_drop:
+      - all
+    networks:
+      - iotnet
+
+  postgres:
+    image: postgres:17.0
+    restart: always
+    env_file:
+      - ./docker/postgres.env
+    volumes:
+      - ./volume/postgres/data:/var/lib/postgresql/data
+    networks:
+      - iotnet
+
+networks:
+  iotnet:
+    driver: bridge
+    name: iotnet_network
