@@ -15,7 +15,7 @@ This Setup is using the official Docker Images of
 
 ## Install
 
-You will need to install git first to checkout the repository or download manually
+You will need to install git to check out the repository or download it manually
 
 ```
 sudo apt install git
