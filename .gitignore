@@ -6,6 +6,10 @@
 volumes/
 backups/
 
+**/volume/
+
 deconz.env
 influxdb.env
 mosquitto.env
+postgres.env
+teslamate.env

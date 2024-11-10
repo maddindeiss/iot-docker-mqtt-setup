@@ -1,0 +1,19 @@
+services: 
+  heimdall:
+    image: ghcr.io/linuxserver/heimdall:2.6.1
+    container_name: heimdall
+    restart: unless-stopped
+    env_file:
+    - ./docker/heimdall.env
+    volumes:
+      - ./volume/config:/config
+    ports:
+      - "8080:80"
+      - "8083:443"
+    networks:
+      - iotnet
+
+networks:
+  iotnet:
+    driver: bridge
+    name: iotnet_network

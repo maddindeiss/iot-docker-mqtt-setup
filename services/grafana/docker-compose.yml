@@ -1,0 +1,22 @@
+services:
+  grafana:
+    image: grafana/grafana:11.3.0
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    env_file:
+      - ./docker/grafana.env
+    volumes:
+      - ./volume/data/lib:/var/lib/grafana
+      - ./volume/data/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./volume/data/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./volume/data/dashboards:/dashboards
+      - ./volume/log:/var/log/grafana
+    networks:
+      - iotnet
+
+networks:
+  iotnet:
+    driver: bridge
+    name: iotnet_network
